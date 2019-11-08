@@ -1,0 +1,1 @@
+export const FIND_ALL_ANIMALS = "FIND_ALL_ANIMALS";
