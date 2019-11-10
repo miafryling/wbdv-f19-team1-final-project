@@ -13,6 +13,7 @@ export default (state = defaultState, action) => {
     switch (action.type) {
         case FIND_ALL_ANIMALS:
             animalService.findAllAnimals().then(animals => newState.animals = animals);
+            console.log(newState)
             return newState;
     }
 }

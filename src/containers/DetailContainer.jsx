@@ -4,7 +4,7 @@ export class DetailContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            animalId: ''
+            animalId: '',
         }
     }
 
@@ -15,7 +15,7 @@ export class DetailContainer extends Component {
     render() {
         return (
             <div>
-
+                Detail Page!
             </div>
         )
     }

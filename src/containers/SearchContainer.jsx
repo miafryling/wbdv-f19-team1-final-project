@@ -1,26 +1,29 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {findAllAnimalsAction} from "../reducer/ActionCreaters";
 import SearchCard from "../components/SearchCard";
+import {AnimalService} from "../services/AnimalService";
 
-class SearchContainer extends Component {
+export default class SearchContainer extends Component {
     constructor(props) {
         super(props);
+        this.animalService = AnimalService.instance;
+        this.state = {animals: []}
     }
 
     componentDidMount() {
-        this.props.findAllAnimals();
+        // this.props.findAllAnimals();
+        this.animalService.findAllAnimals().then(animals => this.setState({animals: animals}))
     }
 
     render() {
-        const {animals} = this.props;
+        // const {animals} = this.props;
+        console.log(this.state.animals)
         return (
             <div>
                 <div className="card-header">
                     <h1>Animal Adoption</h1>
                 </div>
                 <div className="card-deck">
-                    {animals.map(animal =>
+                    {this.state.animals.map(animal =>
                         <SearchCard
                             key={animal.id}
                             animal={animal}
@@ -31,16 +34,16 @@ class SearchContainer extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    animals: state.animals
-})
-
-const mapDispatchToProps = dispatch => {
-    return {
-        findAllAnimals() {
-            dispatch(findAllAnimalsAction())
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);
+// const mapStateToProps = state => ({
+//     animals: state.animals
+// })
+//
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         findAllAnimals() {
+//             dispatch(findAllAnimalsAction())
+//         }
+//     }
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);
