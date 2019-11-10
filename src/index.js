@@ -6,6 +6,7 @@ import AnimalReducer from "./reducer/AnimalReducer";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import AnimalAdoption from "./containers/AnimalAdoption";
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
 
 const store = createStore(AnimalReducer);
 
