@@ -16,7 +16,7 @@ export default class SearchCard extends React.Component {
                         <Link className="card-title" to={`/animals/${animal.id}`}>{animal.name}</Link>
                         <p className="card-text">{animal.description}</p>
                         <button type="button" className="btn btn-outline-primary">
-                            Like
+                            <i className='fa fa-heart'/>
                         </button>
                     </div>
                 </div>
