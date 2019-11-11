@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { AnimalService } from '../services/AnimalService';
-import RoundImage from '../components/RoundImage';
 
 export class DetailContainer extends Component {
     constructor(props) {
@@ -24,10 +23,19 @@ export class DetailContainer extends Component {
                     <div class="col-md-4 bg-primary">
                         {
                             this.state.details.photo && 
-                            <RoundImage
-                            key={this.state.animalId}
-                            link={this.state.details.photo}
-                            name={this.state.details.name}
+                            <img 
+                                style={
+                                    {
+                                        display: 'block',
+                                        margin: 'auto',
+                                        alignSelf: 'center',
+                                        maxHeight: 200,
+                                        maxWidth: 500,
+                                    }
+                                } 
+                                resizeMode="stretch" 
+                                src={this.state.details.photo}
+                                alt={"Picture of " + this.state.details.name}  
                             />
                         }
                     </div>
