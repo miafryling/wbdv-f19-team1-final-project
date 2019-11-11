@@ -9,9 +9,13 @@ export default class SearchContainer extends Component {
         this.state = {
             animals: [],
             types: [],
+            selectedType: '',
             hide: true
         }
-        this.animalService.getAnimalTypes().then(types => this.setState({ types: types }));
+        this.animalService.getAnimalTypes().then(types => this.setState({ types: types, selectedType: types[0] }));
+
+        this.onTypeChange = this.onTypeChange.bind(this);
+        this.search = this.search.bind(this);
     }
 
     componentDidMount() {
@@ -19,9 +23,13 @@ export default class SearchContainer extends Component {
         this.animalService.findAllAnimals().then(animals => this.setState({animals: animals}))
     }
 
-    show = () => {
-        const hide = !this.state.hide;
-        this.setState({hide: hide})
+    onTypeChange(event) {
+      this.setState({ selectedType: event.target.value });
+    }
+
+    search(event) {
+      this.animalService.findAnimalsWithCriteria({ type: this.state.selectedType })
+                        .then(animals => this.setState({ animals: animals }));
     }
 
     render() {
@@ -31,16 +39,15 @@ export default class SearchContainer extends Component {
             <div>
                 <div className="card-header">
                     <h1>Animal Adoption</h1>
-                    <form>
-                      <div class="form-group">
-                        <label for="exampleFormControlSelect1">Type of Animal</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                          {
-                            this.state.types.map(x => <option value={x}>{x.charAt(0).toUpperCase() + x.substring(1)}</option>)
-                          }
-                        </select>
-                      </div>
-                    </form>
+                    <div class="form-group">
+                      <label for="animalType">Type of Animal</label>
+                      <select class="form-control" id="animalType" value={this.state.selectedType} onChange={this.onTypeChange}>
+                        {
+                          this.state.types.map(x => <option value={x}>{x.charAt(0).toUpperCase() + x.substring(1)}</option>)
+                        }
+                      </select>
+                    </div>
+                    <button class="btn btn-primary" onClick={this.search}>Search</button>
                 </div>
                 <div className="card-deck">
                     {this.state.animals.map(animal =>

@@ -17,12 +17,15 @@ export class AnimalService {
 
     getAnimalTypes = () => fetch(url + '/types').then(response => response.json());
 
-    findAllAnimals = () => fetch(url, {
+    findAnimalsWithCriteria = (criteria) => fetch(url, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
-        }
-    }).then(response => response.json())
+        },
+        body: JSON.stringify(criteria)
+    }).then(response => response.json());
+
+    findAllAnimals = () => this.findAnimalsWithCriteria({});
 
     findAnimalById = (animalId) => fetch(url + animalId).then(response => response.json());
 }
