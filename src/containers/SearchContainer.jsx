@@ -8,8 +8,10 @@ export default class SearchContainer extends Component {
         this.animalService = AnimalService.instance;
         this.state = {
             animals: [],
+            types: [],
             hide: true
         }
+        this.animalService.getAnimalTypes().then(types => this.setState({ types: types }));
     }
 
     componentDidMount() {
@@ -29,39 +31,16 @@ export default class SearchContainer extends Component {
             <div>
                 <div className="card-header">
                     <h1>Animal Adoption</h1>
-                    <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                            onClick={this.show}
-                    >
-                        Search
-                    </button>
-                    <div className="row" hidden={this.state.hide}>
-                        <div className="col-12">
-                            <div className="input-group">
-                                <input className="form-control border-secondary py-2" type="search" value="Type"/>
-                                <div className="input-group-append">
-                                    <button className="btn btn-outline-secondary" type="button">
-                                        <i className="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="input-group">
-                                <input className="form-control border-secondary py-2" type="search" value="Age"/>
-                                <div className="input-group-append">
-                                    <button className="btn btn-outline-secondary" type="button">
-                                        <i className="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="input-group">
-                                <input className="form-control border-secondary py-2" type="search" value="Breed"/>
-                                <div className="input-group-append">
-                                    <button className="btn btn-outline-secondary" type="button">
-                                        <i className="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <form>
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Type of Animal</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                          {
+                            this.state.types.map(x => <option value={x}>{x.charAt(0).toUpperCase() + x.substring(1)}</option>)
+                          }
+                        </select>
+                      </div>
+                    </form>
                 </div>
                 <div className="card-deck">
                     {this.state.animals.map(animal =>

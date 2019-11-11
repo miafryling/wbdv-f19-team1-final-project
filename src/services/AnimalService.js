@@ -15,6 +15,7 @@ export class AnimalService {
         return this[_singleton]
     }
 
+    getAnimalTypes = () => fetch(url + '/types').then(response => response.json());
 
     findAllAnimals = () => fetch(url, {
         method: 'POST',
@@ -22,7 +23,6 @@ export class AnimalService {
             'content-type': 'application/json'
         }
     }).then(response => response.json())
-
 
     findAnimalById = (animalId) => fetch(url + animalId).then(response => response.json());
 }
