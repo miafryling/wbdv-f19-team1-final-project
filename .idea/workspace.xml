@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9980255d-2fd7-4ffb-a02b-246b2355d89e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/NavbarComponent.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/LoginContainer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/ProfileContainer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/containers/RegisterContainer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducer/UserReducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/services/UserService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/AnimalAdoption.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/AnimalAdoption.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/ActionCreaters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/ActionCreaters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducer/ActionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducer/ActionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchCard.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -72,11 +60,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/NavbarComponent.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
+            <state relative-caret-position="336">
               <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -90,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/SearchCard.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="4" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="20" />
+            <state relative-caret-position="240">
+              <caret line="16" column="98" selection-start-line="16" selection-start-column="98" selection-end-line="16" selection-end-column="98" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -165,7 +156,6 @@
         <option value="$PROJECT_DIR$/src/containers/DeatilContainer.jsx" />
         <option value="$PROJECT_DIR$/src/containers/DetailContainer.jsx" />
         <option value="$PROJECT_DIR$/src/services/AnimalService.js" />
-        <option value="$PROJECT_DIR$/src/components/SearchCard.jsx" />
         <option value="$PROJECT_DIR$/src/containers/Home.jsx" />
         <option value="$PROJECT_DIR$/src/containers/SearchContainer.jsx" />
         <option value="$PROJECT_DIR$/src/containers/profile.jsx" />
@@ -185,6 +175,7 @@
         <option value="$PROJECT_DIR$/src/reducer/UserReducer.js" />
         <option value="$PROJECT_DIR$/src/containers/AnimalAdoption.jsx" />
         <option value="$PROJECT_DIR$/src/components/NavbarComponent.jsx" />
+        <option value="$PROJECT_DIR$/src/components/SearchCard.jsx" />
       </list>
     </option>
   </component>
@@ -288,12 +279,12 @@
       <workItem from="1573404731602" duration="69000" />
       <workItem from="1573424430854" duration="1022000" />
       <workItem from="1573425720960" duration="7851000" />
-      <workItem from="1574612299741" duration="15277000" />
+      <workItem from="1574612299741" duration="16452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32579000" />
+    <option name="totallyTimeSpent" value="33754000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -351,16 +342,6 @@
           <caret selection-end-column="25" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchCard.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -484,8 +465,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NavbarComponent.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
+        <state relative-caret-position="336">
           <caret line="43" column="51" selection-start-line="43" selection-start-column="51" selection-end-line="43" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SearchCard.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="98" selection-start-line="16" selection-start-column="98" selection-end-line="16" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
