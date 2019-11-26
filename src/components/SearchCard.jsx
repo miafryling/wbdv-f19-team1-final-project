@@ -11,7 +11,11 @@ export default class SearchCard extends React.Component {
         return (
             <div className="col-sm-4">
                 <div className="card" styles={{width: '18rem'}}>
-                    <img className="card-img-top" src={animal.photo} alt="Card image cap"/>
+                    {animal.photo &&
+                    <img className="card-img-top overflow-auto" src={animal.photo} alt="Card image cap"/>}
+                    {!animal.photo &&
+                    <img className="card-img-top overflow-auto" src="https://picsum.photos/300/200"
+                         alt="Card image cap"/>}
                     <div className="card-body">
                         <Link className="card-title" to={`/animals/${animal.id}`}>{animal.name}</Link>
                         <p className="card-text">{animal.description}</p>
