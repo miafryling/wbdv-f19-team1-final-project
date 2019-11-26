@@ -149,11 +149,18 @@ export default class SearchContainer extends Component {
                     <button class="btn btn-primary" onClick={this.search}>Search</button>
                 </div>
                 <div className="card-deck">
-                    {this.state.animals.map(animal =>
+                    {console.log(this.state.animals.error)}
+                    {!this.state.animals.error && this.state.animals.map(animal =>
                         <SearchCard
                             key={animal.id}
                             animal={animal}
                         />)}
+
+                    {this.state.animals.error && 
+                        <div>
+                            No results found.
+                        </div>
+                    }
                 </div>
             </div>
         )
