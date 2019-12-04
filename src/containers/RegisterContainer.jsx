@@ -21,32 +21,43 @@ class RegisterContainer extends React.Component {
     confirmPasswordChanged = (event) => this.setState({confirmPassword: event.target.value})
 
     register = () => {
-        this.userService.findUserByUsername(this.state.username)
+        // this.userService.findUserByUsername(this.state.username)
+        //     .then(user => {
+        //         user && alert(`"${user.username}" username is already taken`)
+        //         return;
+        //     }, () => {
+        //         if (this.state.username.length < 3) {
+        //             alert('Username must be at least 3 characters')
+        //             return
+        //         }
+        //
+        //         if (this.state.password !== this.state.confirmPassword) {
+        //             alert('Passwords must match')
+        //             return
+        //         }
+        //
+        //         const user = {
+        //             username: this.state.username,
+        //             password: this.state.password
+        //         }
+        //
+        //         this.userService.register(user)
+        //             .then(user => {
+        //                 this.props.setUser(user);
+        //                 this.props.history.push('/');
+        //             }).catch(error => alert('Failed to Register!'))
+        //     })
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+
+        this.userService.register(user)
             .then(user => {
-                alert(`"${user.username}" username is already taken`)
-                return;
-            }, () => {
-                if (this.state.username.length < 3) {
-                    alert('Username must be at least 3 characters')
-                    return
-                }
-
-                if (this.state.password !== this.state.confirmPassword) {
-                    alert('Passwords must match')
-                    return
-                }
-
-                const user = {
-                    username: this.state.username,
-                    password: this.state.password
-                }
-
-                this.userService.register(user)
-                    .then(user => {
-                        this.props.setUser(user);
-                        this.props.history.push('/');
-                    }).catch(error => alert('Failed to Register!'))
-            })
+                console.log(user);
+                this.props.setUser(user);
+                this.props.history.push('/');
+            }).catch(error => alert('Failed to Register!'))
     }
 
     render() {

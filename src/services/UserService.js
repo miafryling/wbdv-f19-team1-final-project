@@ -41,4 +41,8 @@ export class UserService {
             method: 'POST'
         }).then(response => response.json());
 
+    findUserByUsername = username =>
+        fetch(url + '/username/' + username)
+            .then(response => response.json());
+
 }
