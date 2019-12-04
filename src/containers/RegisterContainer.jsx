@@ -47,12 +47,12 @@ class RegisterContainer extends React.Component {
         //                 this.props.history.push('/');
         //             }).catch(error => alert('Failed to Register!'))
         //     })
-        const user = {
+        const newUser = {
             username: this.state.username,
             password: this.state.password
         }
 
-        this.userService.register(user)
+        this.userService.register(newUser)
             .then(user => {
                 console.log(user);
                 this.props.setUser(user);

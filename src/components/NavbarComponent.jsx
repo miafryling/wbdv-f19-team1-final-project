@@ -20,7 +20,7 @@ class NavbarComponent extends React.Component {
             .then(() => {
                 this.props.logOut();
                 this.props.history.push('/login');
-            }, () => alert('Failed to Log Out!'))
+            }).catch(error => alert('Failed to Log Out!'))
     }
 
     openNavButton = () => this.setState({isOpen: !this.state.isOpen})

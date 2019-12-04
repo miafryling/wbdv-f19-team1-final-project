@@ -1,6 +1,6 @@
 import React from 'react'
 import {UserService} from "../services/UserService";
-import {setUserAction} from "../reducer/ActionCreaters";
+import {logOutAction, setUserAction} from "../reducer/ActionCreaters";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
@@ -25,8 +25,11 @@ class ProfileContainer extends React.Component {
     emailChanged = event => this.setState({email: event.target.value})
 
     logout = () => {
-        this.userService.logout();
-        this.props.history.push('/login');
+        this.userService.logOut()
+            .then(() => {
+                this.props.logOut();
+                this.props.history.push('/login');
+            }).catch(error => alert('Failed to Log Out!'))
     };
 
     updateUser = () => {
@@ -124,6 +127,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+    logOut: () => dispatch(logOutAction()),
     setUser: user => dispatch(setUserAction(user))
 })
 

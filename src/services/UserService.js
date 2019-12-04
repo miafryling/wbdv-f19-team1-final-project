@@ -15,9 +15,12 @@ export class UserService {
         return this[_singleton]
     }
 
-    login = user =>
-        fetch(url + '/username/' + user.username)
-            .then(response => response.json());
+    login = user => {
+        console.log(typeof user.username);
+        return fetch(url + '/username/' + user.username)
+            .then(response => response.json())
+            .catch(error => alert(error + ' Do not have this account'))
+    }
 
 
     // haven't implemented it in backend
