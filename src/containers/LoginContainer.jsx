@@ -6,13 +6,14 @@ import {Link} from "react-router-dom";
 
 class LoginContainer extends React.Component {
 
+    state = {
+        username: '',
+        password: ''
+    }
+
     constructor(props) {
         super(props)
         this.userService = UserService.instance
-        this.state = {
-            username: '',
-            password: ''
-        }
     }
 
     usernameChanged = event => this.setState({username: event.target.value});
@@ -23,8 +24,12 @@ class LoginContainer extends React.Component {
             username: this.state.username,
             password: this.state.password
         };
-        this.userService.login(user).then(res => this.props.setUser(res))
-    }
+        this.userService.login(user)
+            .then(user => {
+                this.props.setUser(user);
+                this.props.history.push('/');
+            }).catch(error => alert('Failed to Log In!'))
+    };
 
 
     render() {

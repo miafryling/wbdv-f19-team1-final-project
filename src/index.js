@@ -2,18 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {combineReducers, createStore} from "redux";
+import {createStore} from "redux";
 import {Provider} from "react-redux";
 import AnimalAdoption from "./containers/AnimalAdoption";
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
+import userReducer from "./reducer/UserReducer";
 
-const reducer = combineReducers({
-    // UserReducer,
-    // AnimalReducer
-})
-
-const store = createStore(reducer);
+const store = createStore(userReducer);
 
 ReactDOM.render(
     <Provider store={store}>

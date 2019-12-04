@@ -1,6 +1,6 @@
 let _singleton = Symbol();
 
-let url = 'https://wbdv-f19-team1-backend.herokuapp.com/api/';
+let url = 'https://wbdv-f19-team1-backend.herokuapp.com/users';
 
 
 export class UserService {
@@ -16,6 +16,23 @@ export class UserService {
     }
 
     login = user =>
+        fetch(url + '/username/' + user.username)
+            .then(response => response.json());
+
+
+    // haven't implemented it in backend
+    logout = () => fetch(url).then(response => response.json());
+
+    updateUser = (userId, user) =>
+        fetch(url + '/' + userId, {
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT'
+        }).then(response => response.json());
+
+    register = user =>
         fetch(url, {
             body: JSON.stringify(user),
             headers: {
@@ -24,46 +41,4 @@ export class UserService {
             method: 'POST'
         }).then(response => response.json());
 
-
-    logout = () =>
-        fetch(url, {
-            method: 'POST'
-        });
-
-    updateProfile = (userId, user) =>
-        fetch(url, {
-            body: JSON.stringify(user),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT'
-        }).then(response => response.json())
-
-    createUser = user => {
-        this.findUserByUsername(user.username).then(user => {
-            alert("The username: " + user.username + "has already been taken")
-        }, () => {
-            if (user.username.length <= 3) {
-                alert("The username should be at least 3 characters!")
-                return
-            }
-            if (user.password !== user.confirmPassword) {
-                alert("Passwords must match!")
-                return
-            }
-            console.log(user)
-            return fetch(url, {
-                body: JSON.stringify(user),
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                method: 'POST'
-            }).then(response => response.json())
-        })
-    };
-
-    findUserByUsername = username => fetch(url).then(response => response.json())
-
 }
-
