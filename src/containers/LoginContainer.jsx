@@ -36,7 +36,7 @@ class LoginContainer extends React.Component {
                 <h1>Sign In</h1>
                 <form>
                     <div className="form-group row">
-                        <label className="col-sm-2 col-form-label" for="username">
+                        <label className="col-sm-2 col-form-label" htmlFor="username">
                             Username </label>
                         <div className="col-sm-10">
                             <input className="form-control"
@@ -47,7 +47,7 @@ class LoginContainer extends React.Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label className="col-sm-2 col-form-label" for="password">
+                        <label className="col-sm-2 col-form-label" htmlFor="password">
                             Password </label>
                         <div className="col-sm-10">
                             <input className="form-control"
