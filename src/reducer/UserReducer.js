@@ -9,6 +9,7 @@ export default (state = defaultState, action) => {
     switch (action.type) {
         case SET_USER:
             newState.user = action.user;
+            console.log(newState.user)
             return newState;
         case LOG_OUT:
             newState.user = {};

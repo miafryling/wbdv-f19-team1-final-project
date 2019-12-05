@@ -33,11 +33,11 @@ class ProfileContainer extends React.Component {
     };
 
     updateUser = () => {
-        this.userService.updateUser(this.props.user.id, this.state)
+        this.userService.updateUser(this.props.user._id, this.state)
             .then(newUser => {
                 this.props.setUser(newUser);
                 alert("Update Profile Successfully!");
-            }).catch(error => alert('Failed to Update!'))
+            })
     };
 
     render() {

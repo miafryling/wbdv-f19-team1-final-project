@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
 import {AnimalService} from '../services/AnimalService';
-import {Link} from "react-router-dom";
+
+class MyAppChild extends React.Component {
+    render() {
+        return <li>{this.props.label + " - " + this.props.value}</li>;
+    }
+}
 
 export class DetailContainer extends Component {
     constructor(props) {
         super(props);
         this.animalService = AnimalService.instance;
         this.state = {
+            loading: true,
             animalId: this.props.match.params.animalId,
             details: {}
         }
@@ -14,79 +20,95 @@ export class DetailContainer extends Component {
 
     componentWillMount() {
         // this.setState({animalId: this.props.match.params.animalId})
-        this.animalService.findAnimalById(this.state.animalId).then(info => this.setState({details: info}))
+        this.animalService.findAnimalById(this.state.animalId).then(info => this.setState({
+            loading: false,
+            details: info
+        }))
+    }
+
+
+    renderObject(object_var) {
+        {/* TODO: RENDER DYNAMICALLY */
+        }
+        var arr = [];
+        Object.keys(object_var).forEach(function (key) {
+            arr.push(object_var[key]);
+        });
+        return <ul>{arr.map(item => <li> {item.toString()} </li>)}</ul>;
+    }
+
+
+    renderList = data => {
+        return (
+            <ul>
+                {data.map(item => (
+                    <li style={{listStyle: "none"}} key={item.id}>
+                        {item.title}
+                    </li>
+                ))}
+            </ul>
+        );
+    };
+
+
+    renderSimpleObject(object_var) {
+        if (object_var) {
+            return Object.keys(object_var).map((key) => {
+                return <p>{key} :
+                    {JSON.stringify(object_var[key])}</p>;
+            });
+        } else {
+            return <p>data is not available</p>;
+        }
     }
 
     render() {
+        const {loading, animalID, details} = this.state
+        {
+            console.log(details)
+        }
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-3 ">
-                        <div className="text-center">
-                            {this.state.details.photo &&
-                            <img src={this.state.details.photo}
-                                 className="avatar img-circle img-thumbnail"
-                                 alt="avatar"/>}
-                            {!this.state.details.photo &&
-                            <img src="https://picsum.photos/300/200"
-                                 className="avatar img-circle img-thumbnail"
-                                 alt="avatar"/>}
-                        </div>
-                        <button type="button" className="btn btn-outline-primary list-group-item">
-                            <i className='fa fa-heart'>Like</i>
-                        </button>
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        {/* TODO: FIx the loading placeholder */}
+                        {loading ? "" :
+                            <img
+                                style={
+                                    {
+                                        display: 'block',
+                                        margin: 'auto',
+                                        alignSelf: 'center',
+                                        maxHeight: 200,
+                                        maxWidth: 500,
+                                    }
+                                }
+                                resizeMode="stretch"
+                                src={details.photos[0].full}
+                                alt={"Picture of " + details.name}
+                            />}
+
+
                     </div>
-                    <div className="col-md-9">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <h4>{this.state.details.name}</h4>
-                                        <hr/>
-                                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{this.state.details.name}</h5>
+                            {/* TODO: FIx the loading placeholder */}
+                            {loading ? "" :
+                                <div>
+                                    <h6 class="card-subtitle text-muted">{details.breeds.primary}</h6>
+                                    <p class="card-text">{this.state.details.description}</p>
+                                    <h6> Details </h6>
+                                    <p class="card-text"> Age: {details.age} </p>
+                                    <p class="card-text"> Gender: {details.gender} </p>
+                                    <p class="card-text"> Coat: {details.coat} </p>
+                                    <p class="card-text"> {this.renderSimpleObject(details.attributes)} </p>
+                                    <h6 class="card-text">Contact Info </h6>
+                                    <p class="card-text"> {this.renderSimpleObject(details.contact)} </p>
                                 </div>
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <form>
-                                            <div className="form-group row">
-                                                <label htmlFor="name" className="col-4 col-form-label">Name</label>
-                                                <div className="col-8">
-                                                    <input id="name" name="name" placeholder="Name"
-                                                           className="form-control here" required="required"
-                                                           readOnly="readonly"
-                                                           type="text" value={this.state.details.name}/>
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label htmlFor="breed"
-                                                       className="col-4 col-form-label">Breed</label>
-                                                <div className="col-8">
-                                                    <input id="breed" name="breed" placeholder="Breed"
-                                                           className="form-control here" required="required"
-                                                           readOnly="readonly"
-                                                           type="text" value={this.state.details.breed}/>
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <label htmlFor="description"
-                                                       className="col-4 col-form-label">Description</label>
-                                                <div className="col-8">
-                                                    <textarea id="description" placeholder="First Name"
-                                                              className="form-control here col-8"
-                                                              value={this.state.details.description}></textarea>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
-                </div>
-                <br/>
-                <div className="float-right">
-                    <Link to='/animals' className="btn btn-primary">All
-                        Animals</Link>
                 </div>
             </div>
         )

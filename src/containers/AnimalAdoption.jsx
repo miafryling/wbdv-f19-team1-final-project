@@ -20,8 +20,8 @@ export default class AnimalAdoption extends Component {
                         <Route exact path='/' component={Home}/>
                         <Route exact path='/animals' component={SearchContainer}/>
                         <Route path='/animals/:animalId' component={DetailContainer}/>
-                        <Route path='/login' component={Login}/>
-                        <Route path='/register' component={Register}/>
+                        <Route exact path='/login' component={Login}/>
+                        <Route exact path='/register' component={Register}/>
                         <Route path='/profile' component={Profile}/>
                         {/*should be /profile/:id*/}
                     </Switch>

@@ -20,13 +20,14 @@ class LoginContainer extends React.Component {
     passwordChanged = event => this.setState({password: event.target.value});
 
     login = () => {
-        this.userService.login(this.state)
+        console.log(this.state.username);
+        this.userService.findUserByUsername(this.state.username)
             .then(user => {
                 console.log(user);
                 this.props.setUser(user);
                 this.props.history.push('/');
             })
-        // .catch(error => alert('Failed to Log In!'))
+            .catch(error => alert(error))
     };
 
 

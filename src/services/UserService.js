@@ -20,11 +20,7 @@ export class UserService {
         return fetch(url + '/username/' + user.username)
             .then(response => response.json())
             .catch(error => alert(error + ' Do not have this account'))
-    }
-
-
-    // haven't implemented it in backend
-    logout = () => fetch(url).then(response => response.json());
+    };
 
     updateUser = (userId, user) =>
         fetch(url + '/' + userId, {
@@ -33,7 +29,10 @@ export class UserService {
                 'Content-Type': 'application/json'
             },
             method: 'PUT'
-        }).then(response => response.json());
+        }).then(response => {
+            console.log(response)
+            // return response.json()
+        });
 
     register = user =>
         fetch(url, {
@@ -47,5 +46,4 @@ export class UserService {
     findUserByUsername = username =>
         fetch(url + '/username/' + username)
             .then(response => response.json());
-
 }

@@ -54,7 +54,6 @@ class RegisterContainer extends React.Component {
 
         this.userService.register(newUser)
             .then(user => {
-                console.log(user);
                 this.props.setUser(user);
                 this.props.history.push('/');
             }).catch(error => alert('Failed to Register!'))
