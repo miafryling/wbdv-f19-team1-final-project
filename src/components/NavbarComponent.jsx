@@ -1,6 +1,6 @@
 import React from 'react'
 import {UserService} from "../services/UserService";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {Collapse, Navbar, NavbarToggler} from 'reactstrap'
 
 class NavbarComponent extends React.Component {
@@ -76,4 +76,4 @@ class NavbarComponent extends React.Component {
     }
 }
 
-export default NavbarComponent;
+export default withRouter(NavbarComponent);
