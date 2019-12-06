@@ -25,7 +25,12 @@ export default class SearchContainer extends Component {
             types.map(type => colors[type.name.toLowerCase()] = type.colors.map(x => x.toLowerCase()));
 
             this.setState({
-                types: types.map(x => x.name.toLowerCase()),
+                types: types.map(x => {
+                  return {
+                    name: x.name,
+                    value: x._links.self.href.substring(10)
+                  }
+                }),
                 colors
             });
         });
@@ -102,7 +107,7 @@ export default class SearchContainer extends Component {
                             <option value=""></option>
                             {
                                 this.state.types.map(x => <option
-                                    value={x}>{x.charAt(0).toUpperCase() + x.substring(1)}</option>)
+                                    value={x.value}>{x.name}</option>)
                             }
                         </select>
                         <select className="form-control" id="animalSize" value={this.state.selectedSize}
