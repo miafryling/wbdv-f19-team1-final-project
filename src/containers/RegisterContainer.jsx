@@ -1,7 +1,5 @@
 import React from 'react'
 import {UserService} from "../services/UserService";
-import {connect} from "react-redux";
-import {setUserAction} from "../reducer/ActionCreaters";
 import {Link} from "react-router-dom";
 
 class RegisterContainer extends React.Component {
@@ -20,33 +18,9 @@ class RegisterContainer extends React.Component {
     passwordChanged = (event) => this.setState({password: event.target.value})
     confirmPasswordChanged = (event) => this.setState({confirmPassword: event.target.value})
 
-    register = () => {
-        // this.userService.findUserByUsername(this.state.username)
-        //     .then(user => {
-        //         user && alert(`"${user.username}" username is already taken`)
-        //         return;
-        //     }, () => {
-        //         if (this.state.username.length < 3) {
-        //             alert('Username must be at least 3 characters')
-        //             return
-        //         }
-        //
-        //         if (this.state.password !== this.state.confirmPassword) {
-        //             alert('Passwords must match')
-        //             return
-        //         }
-        //
-        //         const user = {
-        //             username: this.state.username,
-        //             password: this.state.password
-        //         }
-        //
-        //         this.userService.register(user)
-        //             .then(user => {
-        //                 this.props.setUser(user);
-        //                 this.props.history.push('/');
-        //             }).catch(error => alert('Failed to Register!'))
-        //     })
+    register = (e) => {
+        e.preventDefault();
+
         const newUser = {
             username: this.state.username,
             password: this.state.password
@@ -54,7 +28,8 @@ class RegisterContainer extends React.Component {
 
         this.userService.register(newUser)
             .then(user => {
-                this.props.setUser(user);
+                sessionStorage.setItem('user', JSON.stringify(user));
+                this.props.changeUser(user);
                 this.props.history.push('/');
             }).catch(error => alert('Failed to Register!'))
     }
@@ -125,11 +100,4 @@ class RegisterContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => state
-
-const mapDispatchToProps = dispatch => ({
-    setUser: user => dispatch(setUserAction(user))
-})
-
-const Register = connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
-export default Register;
+export default RegisterContainer;

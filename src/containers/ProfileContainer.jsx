@@ -1,7 +1,5 @@
 import React from 'react'
 import {UserService} from "../services/UserService";
-import {logOutAction, setUserAction} from "../reducer/ActionCreaters";
-import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
@@ -25,23 +23,22 @@ class ProfileContainer extends React.Component {
     emailChanged = event => this.setState({email: event.target.value})
 
     logout = () => {
-        this.userService.logOut()
-            .then(() => {
-                this.props.logOut();
-                this.props.history.push('/login');
-            }).catch(error => alert('Failed to Log Out!'))
+      sessionStorage.setItem('user', null);
+      this.props.changeUser(null);
+      this.props.history.push('/login');
     };
 
     updateUser = () => {
         this.userService.updateUser(this.props.user._id, this.state)
             .then(newUser => {
-                this.props.setUser(newUser);
+                sessionStorage.setItem('user', JSON.stringify(newUser));
+                this.props.changeUser(newUser);
                 alert("Update Profile Successfully!");
             })
     };
 
     render() {
-        const {user} = this.props;
+        const user = JSON.parse(sessionStorage.getItem('user'));
         return (
             <div className="container">
                 <h1>Profile</h1>
@@ -122,14 +119,4 @@ class ProfileContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    user: state.user
-})
-
-const mapDispatchToProps = dispatch => ({
-    logOut: () => dispatch(logOutAction()),
-    setUser: user => dispatch(setUserAction(user))
-})
-
-const Profile = connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
-export default Profile;
+export default ProfileContainer;

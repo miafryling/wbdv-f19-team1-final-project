@@ -1,7 +1,5 @@
 import React from 'react'
 import {UserService} from "../services/UserService";
-import {connect} from "react-redux";
-import {setUserAction} from "../reducer/ActionCreaters";
 import {Link} from "react-router-dom";
 
 class LoginContainer extends React.Component {
@@ -14,17 +12,25 @@ class LoginContainer extends React.Component {
     constructor(props) {
         super(props)
         this.userService = UserService.instance
+
+        this.login = this.login.bind(this);
     }
 
     usernameChanged = event => this.setState({username: event.target.value});
     passwordChanged = event => this.setState({password: event.target.value});
 
-    login = () => {
-        console.log(this.state.username);
-        this.userService.findUserByUsername(this.state.username)
-            .then(user => {
-                console.log(user);
-                this.props.setUser(user);
+    login = (e) => {
+        e.preventDefault();
+
+        this.userService.login(this.state.username, this.state.password)
+            .then(res => {
+                if (res.error) {
+                  alert('Incorrect username or password.')
+                  return;
+                }
+
+                sessionStorage.setItem('user', JSON.stringify(res));
+                this.props.changeUser(res);
                 this.props.history.push('/');
             })
             .catch(error => alert(error))
@@ -32,6 +38,7 @@ class LoginContainer extends React.Component {
 
 
     render() {
+      console.log(this.props)
         return (
             <div className="container">
                 <h1>Sign In</h1>
@@ -82,11 +89,4 @@ class LoginContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => state
-
-const mapDispatchToProps = dispatch => ({
-    setUser: user => dispatch(setUserAction(user))
-})
-
-const Login = connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
-export default Login;
+export default LoginContainer;

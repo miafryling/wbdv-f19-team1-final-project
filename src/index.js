@@ -2,19 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {createStore} from "redux";
-import {Provider} from "react-redux";
 import AnimalAdoption from "./containers/AnimalAdoption";
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import userReducer from "./reducer/UserReducer";
-
-const store = createStore(userReducer);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <AnimalAdoption/>
-    </Provider>,
+    <AnimalAdoption/>,
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
