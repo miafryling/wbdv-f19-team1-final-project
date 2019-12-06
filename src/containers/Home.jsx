@@ -11,6 +11,11 @@ const Home = () => (
                 Animal List
             </Link>
         </button>
+        <button type="button" className="btn btn-outline-danger btn-lg btn-block">
+            <Link to="/events">
+                Event List
+            </Link>
+        </button>
     </div>
 )
 

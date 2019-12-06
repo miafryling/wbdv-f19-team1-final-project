@@ -16,9 +16,9 @@ class NavbarComponent extends React.Component {
     }
 
     logOut = () => {
-      sessionStorage.setItem('user', null)
-      this.props.changeUser(null);
-      this.props.history.push('/');
+        sessionStorage.setItem('user', null)
+        this.props.changeUser(null);
+        this.props.history.push('/');
     }
 
     openNavButton = () => this.setState({isOpen: !this.state.isOpen})
@@ -61,6 +61,11 @@ class NavbarComponent extends React.Component {
                                 <button onClick={this.logOut}
                                         className="btn btn-outline-danger mr-md-2 mb-2 mb-md-0">Logout
                                 </button>
+                            </li>
+                            <li className="nav-item">
+                                <Link to="/events/create" className="btn btn-outline-primary mr-md-2 mb-2 mb-md-0">
+                                    Create Events
+                                </Link>
                             </li>
                         </ul>
                     </div>

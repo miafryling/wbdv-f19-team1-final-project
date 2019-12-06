@@ -9,19 +9,22 @@ import Login from "./LoginContainer";
 import Profile from "./ProfileContainer";
 import Register from "./RegisterContainer";
 import CunstomerNavBar from "../components/NavbarComponent";
+import EventContainer from "./EventContainer";
+import EventDetail from "./EventDetail";
+import EventCreate from "./EventCreate";
 
 export default class AnimalAdoption extends Component {
     constructor(props) {
-      super(props);
+        super(props);
 
-      this.state = {
-        user: JSON.parse(sessionStorage.getItem('user'))
-      }
+        this.state = {
+            user: JSON.parse(sessionStorage.getItem('user'))
+        }
 
-      this.changeUser = this.changeUser.bind(this);
+        this.changeUser = this.changeUser.bind(this);
     }
 
-    changeUser = user => this.setState({ user });
+    changeUser = user => this.setState({user});
 
     render() {
         return (
@@ -32,9 +35,15 @@ export default class AnimalAdoption extends Component {
                         <Route exact path='/' component={Home}/>
                         <Route exact path='/animals' component={SearchContainer}/>
                         <Route path='/animals/:animalId' component={DetailContainer}/>
-                        <Route exact path='/login' render={(props) => <Login {...props} changeUser={this.changeUser}></Login>}/>
-                        <Route exact path='/register' render={(props) => <Register {...props} changeUser={this.changeUser}></Register>}/>
-                        <Route path='/profile' render={(props) => <Profile {...props} changeUser={this.changeUser}></Profile>}/>
+                        <Route exact path='/login'
+                               render={(props) => <Login {...props} changeUser={this.changeUser}></Login>}/>
+                        <Route exact path='/register'
+                               render={(props) => <Register {...props} changeUser={this.changeUser}></Register>}/>
+                        <Route path='/profile'
+                               render={(props) => <Profile {...props} changeUser={this.changeUser}></Profile>}/>
+                        <Route path='/events' component={EventContainer}/>
+                        <Route path='/events/:eventId' component={EventDetail}/>
+                        <Route path='/events/create' component={EventCreate}/>
                         {/*should be /profile/:id*/}
                     </Switch>
                 </div>
