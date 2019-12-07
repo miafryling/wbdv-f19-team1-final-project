@@ -13,6 +13,7 @@ import EventContainer from "./EventContainer";
 import EventDetail from "./EventDetail";
 import EventCreate from "./EventCreate";
 import UserSearch from './UserSearch';
+import PublicProfile from './PublicProfile';
 
 export default class AnimalAdoption extends Component {
     constructor(props) {
@@ -46,6 +47,7 @@ export default class AnimalAdoption extends Component {
                         <Route path='/events/create' component={EventCreate}/>
                         <Route exact path='/events/:eventId' component={EventDetail}/>
                         <Route exact path='/users' component={UserSearch}/>
+                        <Route path='/users/:userId' component={PublicProfile}/>
                         {/*should be /profile/:id*/}
                     </Switch>
                 </div>
