@@ -109,7 +109,7 @@ class ProfileContainer extends React.Component {
                                     ref={node => roleElement = node}
                                     onChange={() => this.setState({role: roleElement.value})}>
                                 <option value="admin">Admin</option>
-                                <option value="adopter">Adopter</option>
+                                <option value="user">User</option>
                             </select>
                         </div>
                     </div>
