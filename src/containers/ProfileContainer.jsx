@@ -9,7 +9,6 @@ class ProfileContainer extends React.Component {
         password: '',
         firstName: '',
         lastName: '',
-        email: '',
         role: ''
     };
 
@@ -18,10 +17,20 @@ class ProfileContainer extends React.Component {
         this.userService = UserService.instance;
     }
 
+    componentDidMount() {
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        this.setState({
+            username: user.username,
+            password: user.password,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role
+        })
+    }
+
     passwordChanged = event => this.setState({password: event.target.value})
     firstNameChanged = event => this.setState({firstName: event.target.value})
     lastNameChanged = event => this.setState({lastName: event.target.value})
-    emailChanged = event => this.setState({email: event.target.value})
 
     logout = () => {
         sessionStorage.setItem('user', null);
@@ -29,8 +38,10 @@ class ProfileContainer extends React.Component {
         this.props.history.push('/login');
     };
 
-    updateUser = () => {
+    updateUser = (e) => {
+        e.preventDefault();
         const userId = JSON.parse(sessionStorage.getItem('user'))._id;
+        console.log(this.state);
         this.userService.updateUser(userId, this.state)
             .then(newUser => {
                 sessionStorage.setItem('user', JSON.stringify(newUser));
@@ -40,7 +51,6 @@ class ProfileContainer extends React.Component {
     };
 
     render() {
-        const user = JSON.parse(sessionStorage.getItem('user'));
         let roleElement;
         return (
             <div className="container">
@@ -53,7 +63,7 @@ class ProfileContainer extends React.Component {
                             <input className="form-control"
                                    id="usernameFld"
                                    placeholder="username"
-                                   value={user.username}
+                                   value={this.state.username}
                                    readOnly="readonly"/>
                         </div>
                     </div>
@@ -63,7 +73,7 @@ class ProfileContainer extends React.Component {
                         <div className="col-sm-10">
                             <input className="form-control"
                                    id="passwordFld"
-                                   value={user.password}
+                                   value={this.state.password}
                                    onChange={this.passwordChanged}
                                    placeholder="password"/>
                         </div>
@@ -74,7 +84,7 @@ class ProfileContainer extends React.Component {
                         <div className="col-sm-10">
                             <input className="form-control"
                                    id="firstNameFld"
-                                   value={user.firstName}
+                                   value={this.state.firstName}
                                    onChange={this.firstNameChanged}
                                    placeholder="First Name"/>
                         </div>
@@ -85,27 +95,16 @@ class ProfileContainer extends React.Component {
                         <div className="col-sm-10">
                             <input className="form-control"
                                    id="lastNameFld"
-                                   value={user.lastName}
+                                   value={this.state.lastName}
                                    onChange={this.lastNameChanged}
-                                   placeholder="First Name"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-form-label" htmlFor="emailFld">
-                            Email </label>
-                        <div className="col-sm-10">
-                            <input className="form-control"
-                                   id="emailFld"
-                                   value={user.email}
-                                   onChange={this.emailChanged}
-                                   placeholder="email"/>
+                                   placeholder="Last Name"/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label" htmlFor="lastNameFld">
-                            Last Name </label>
+                            Role </label>
                         <div className="col-sm-10">
-                            <select value={user.role}
+                            <select value={this.state.role}
                                     className="form-control"
                                     ref={node => roleElement = node}
                                     onChange={() => this.setState({role: roleElement.value})}>
