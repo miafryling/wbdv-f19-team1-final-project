@@ -12,6 +12,7 @@ import CunstomerNavBar from "../components/NavbarComponent";
 import EventContainer from "./EventContainer";
 import EventDetail from "./EventDetail";
 import EventCreate from "./EventCreate";
+import UserSearch from './UserSearch';
 
 export default class AnimalAdoption extends Component {
     constructor(props) {
@@ -44,6 +45,7 @@ export default class AnimalAdoption extends Component {
                         <Route exact path='/events' component={EventContainer}/>
                         <Route path='/events/create' component={EventCreate}/>
                         <Route exact path='/events/:eventId' component={EventDetail}/>
+                        <Route exact path='/users' component={UserSearch}/>
                         {/*should be /profile/:id*/}
                     </Switch>
                 </div>

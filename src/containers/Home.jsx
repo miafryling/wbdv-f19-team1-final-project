@@ -16,6 +16,11 @@ const Home = () => (
                 Event List
             </Link>
         </button>
+        <button type="button" className="btn btn-outline-success btn-lg btn-block">
+          <Link to="/users">
+            User Search
+          </Link>
+        </button>
     </div>
 )
 

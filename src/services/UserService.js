@@ -36,4 +36,6 @@ export class UserService {
     findUserById = userId => fetch(url + `/${userId}`).then(response => response.json());
 
     login = (username, password) => fetch(url + `/login/${username}/${password}`).then(res => res.json())
+
+    searchForUsers = searchText => fetch(url + `/search/${searchText}`).then(res => res.json());
 }
