@@ -33,8 +33,8 @@ class NavbarComponent extends React.Component {
                     <ul className="navbar-nav mr-auto">
                         {user != null &&
                         <li className='nav-item'>
-                            <div className='nav-link font-weight-light mb-2 mb-md-0 text-white-50'>User
-                                - {user.username}</div>
+                            <div
+                                className='nav-link font-weight-light mb-2 mb-md-0 text-white-50'>Hello! {user.username}</div>
                         </li>
                         }
                     </ul>

@@ -20,28 +20,31 @@ export default class extends Component {
         const {event} = this.props;
         const user = JSON.parse(sessionStorage.getItem('user'));
         return (
-            <div className="card mb-3">
-                <img className="card-img-top" src="..." alt="Card image cap"/>
-                <div className="card-body">
-                    {user && <Link to={`/events/${event._id}`} className="card-title">{event.name}</Link>}
-                    {!user && <Link to='/login' className="card-title"
-                                    onClick={() => alert("Log In First Please!")}>
-                        {event.name}
-                    </Link>}
-                    <p className="card-text">{event.description}</p>
-                    {user &&
-                    <button className="btn btn-primary"
-                            onClick={this.registerEvent}>
-                        Register Now!
-                    </button>}
-                    {!user &&
-                    <button className="btn btn-primary"
-                            onClick={() => {
-                                alert("Log In First Please!");
-                                this.props.history.push('/login');
-                            }}>
-                        Register Now!
-                    </button>}
+            <div className="col-sm-4">
+                <div className="card" styles={{width: '18rem'}}>
+                    <img className="card-img-top overflow-auto" src="https://3blaws.s3.amazonaws.com/images/3_27.jpg"
+                         alt="Card image cap"/>
+                    <div className="card-body">
+                        {user && <Link to={`/events/${event._id}`} className="card-title">{event.name}</Link>}
+                        {!user && <Link to='/login' className="card-title"
+                                        onClick={() => alert("Log In First Please!")}>
+                            {event.name}
+                        </Link>}
+                        <p className="card-text">{event.description}</p>
+                        {user &&
+                        <button className="btn btn-primary"
+                                onClick={this.registerEvent}>
+                            Register Now!
+                        </button>}
+                        {!user &&
+                        <button className="btn btn-primary"
+                                onClick={() => {
+                                    alert("Log In First Please!");
+                                    this.props.history.push('/login');
+                                }}>
+                            Register Now!
+                        </button>}
+                    </div>
                 </div>
             </div>
         )

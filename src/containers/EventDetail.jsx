@@ -64,12 +64,13 @@ export default class EventDetail extends Component {
                 </h1>
                 <div className="row">
                     <div className="col-md-8">
-                        <img className="img-fluid" src="..." alt="Event Pic"/>
+                        <img className="img-fluid" src="https://3blaws.s3.amazonaws.com/images/2_25.jpg"
+                             alt="Event Pic"/>
                     </div>
                     <div className="col-md-4">
-                        <h3 className="my-3">Event Owner</h3>
+                        <h3 className="my-3">Event Owner:</h3>
                         <p>{this.state.ownerName}</p>
-                        <h3 className="my-3">Event Name</h3>
+                        <h3 className="my-3">Event Name:</h3>
                         {currentUserId === this.state.userId && <p>{this.state.event.name}</p>}
                         {!currentUserId === this.state.userId &&
                         <input onChange={this.nameChanged}
@@ -77,7 +78,7 @@ export default class EventDetail extends Component {
                                value={this.state.event.name}
                                placeholder="New Event Location"
                         />}
-                        <h3 className="my-3">Event Location</h3>
+                        <h3 className="my-3">Event Location:</h3>
                         {currentUserId === this.state.userId && <p>{this.state.event.location}</p>}
                         {!currentUserId === this.state.userId &&
                         <input onChange={this.locationChanged}
@@ -85,7 +86,7 @@ export default class EventDetail extends Component {
                                value={this.state.event.location}
                                placeholder="New Event Location"
                         />}
-                        <h3 className="my-3">Event Description</h3>
+                        <h3 className="my-3">Event Description:</h3>
                         {currentUserId === this.state.userId && <p>{this.state.event.description}</p>}
                         {!currentUserId === this.state.userId &&
                         <input onChange={this.descriptionChanged}
@@ -95,6 +96,7 @@ export default class EventDetail extends Component {
                         />}
                     </div>
                 </div>
+                <br/>
                 <button className="btn btn-primary"
                         onClick={this.registerEvent}>
                     Register Now!

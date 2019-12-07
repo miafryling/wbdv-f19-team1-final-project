@@ -41,9 +41,9 @@ export default class AnimalAdoption extends Component {
                                render={(props) => <Register {...props} changeUser={this.changeUser}></Register>}/>
                         <Route path='/profile'
                                render={(props) => <Profile {...props} changeUser={this.changeUser}></Profile>}/>
-                        <Route path='/events' component={EventContainer}/>
-                        <Route path='/events/:eventId' component={EventDetail}/>
+                        <Route exact path='/events' component={EventContainer}/>
                         <Route path='/events/create' component={EventCreate}/>
+                        <Route exact path='/events/:eventId' component={EventDetail}/>
                         {/*should be /profile/:id*/}
                     </Switch>
                 </div>
