@@ -15,13 +15,6 @@ export class UserService {
         return this[_singleton]
     }
 
-    login = user => {
-        console.log(typeof user.username);
-        return fetch(url + '/username/' + user.username)
-            .then(response => response.json())
-            .catch(error => alert(error + ' Do not have this account'))
-    };
-
     updateUser = (userId, user) =>
         fetch(url + '/' + userId, {
             body: JSON.stringify(user),
@@ -29,10 +22,7 @@ export class UserService {
                 'Content-Type': 'application/json'
             },
             method: 'PUT'
-        }).then(response => {
-            console.log(response)
-            // return response.json()
-        });
+        }).then(response => response.json());
 
     register = user =>
         fetch(url, {
@@ -43,11 +33,7 @@ export class UserService {
             method: 'POST'
         }).then(response => response.json());
 
-    findUserByUsername = username =>
-        fetch(url + '/username/' + username)
-            .then(response => response.json());
-    
-    login = (username, password) =>
-      fetch(url + `/login/${username}/${password}`)
-        .then(res => res.json())
+    findUserById = userId => fetch(url + `/${userId}`).then(response => response.json());
+
+    login = (username, password) => fetch(url + `/login/${username}/${password}`).then(res => res.json())
 }

@@ -7,13 +7,18 @@ export default class EventCreate extends Component {
         this.eventService = EventService.instance;
         this.state = {
             name: '',
-            description: ''
+            location: '',
+            description: '',
+            owner: ''
         }
     }
 
+    componentDidMount() {
+        this.setState({owner: JSON.parse(sessionStorage.getItem('user'))._id})
+    }
+
     createEvent = () => {
-        const user = JSON.parse(sessionStorage.getItem('user'));
-        this.eventService.createEvent(user._id, this.state)
+        this.eventService.createEvent(this.state)
             .then(() => {
                 alert('Create Event Successfully');
                 this.props.history.push('/events');
@@ -22,6 +27,7 @@ export default class EventCreate extends Component {
     };
 
     nameChanged = event => this.setState({name: event.target.value});
+    locationChanged = event => this.setState({location: event.target.value});
     descriptionChanged = event => this.setState({description: event.target.value});
 
     render() {
@@ -51,12 +57,17 @@ export default class EventCreate extends Component {
                                     </div>
                                 </div>
                                 <div className="form-row">
+                                    <div className="form-group col-md-6">
+                                        <input id="Event Location" name="Event Location" placeholder="Event Location"
+                                               className="form-control" type="text" onChange={this.locationChanged}/>
+                                    </div>
+                                </div>
+                                <div className="form-row">
                                     <div className="form-group col-md-12">
                                             <textarea id="comment" name="comment" cols="40" rows="5"
                                                       className="form-control" onChange={this.descriptionChanged}/>
                                     </div>
                                 </div>
-
                                 <div className="form-row">
                                     <button type="button" className="btn btn-primary"
                                             onClick={this.createEvent}>

@@ -28,5 +28,9 @@ export class AnimalService {
     findAllAnimals = () => this.findAnimalsWithCriteria({});
 
     findAnimalById = (animalId) => fetch(url + animalId).then(response => response.json());
+
+    likeAnimal = (userId, animalId) => {
+
+    }
 }
 

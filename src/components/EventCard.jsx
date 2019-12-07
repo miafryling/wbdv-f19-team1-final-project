@@ -11,10 +11,10 @@ export default class extends Component {
     registerEvent = () => {
         const user = JSON.parse(sessionStorage.getItem('user'));
         const event = this.props.event;
-        this.eventService.registerEvent(user._id, event._id)
+        this.eventService.registerEvent(event._id, user._id)
             .then(() => alert("Successfully Registered!"))
-            .catch(error => alert("Failed to Registered because " + error))
-    }
+            .catch(error => alert("Failed to Register This Event because " + error))
+    };
 
     render() {
         const {event} = this.props;

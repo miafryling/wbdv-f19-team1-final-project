@@ -9,7 +9,8 @@ class ProfileContainer extends React.Component {
         password: '',
         firstName: '',
         lastName: '',
-        email: ''
+        email: '',
+        role: ''
     };
 
     constructor(props) {
@@ -23,9 +24,9 @@ class ProfileContainer extends React.Component {
     emailChanged = event => this.setState({email: event.target.value})
 
     logout = () => {
-      sessionStorage.setItem('user', null);
-      this.props.changeUser(null);
-      this.props.history.push('/login');
+        sessionStorage.setItem('user', null);
+        this.props.changeUser(null);
+        this.props.history.push('/login');
     };
 
     updateUser = () => {
@@ -39,6 +40,7 @@ class ProfileContainer extends React.Component {
 
     render() {
         const user = JSON.parse(sessionStorage.getItem('user'));
+        let roleElement;
         return (
             <div className="container">
                 <h1>Profile</h1>
@@ -58,7 +60,7 @@ class ProfileContainer extends React.Component {
                         <label className="col-sm-2 col-form-label" htmlFor="passwordFld">
                             Password </label>
                         <div className="col-sm-10">
-                            <input className="form-control wbdv-field wbdv-password"
+                            <input className="form-control"
                                    id="passwordFld"
                                    value={user.password}
                                    onChange={this.passwordChanged}
@@ -96,6 +98,19 @@ class ProfileContainer extends React.Component {
                                    value={user.email}
                                    onChange={this.emailChanged}
                                    placeholder="email"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" htmlFor="lastNameFld">
+                            Last Name </label>
+                        <div className="col-sm-10">
+                            <select value={user.role}
+                                    className="form-control"
+                                    ref={node => roleElement = node}
+                                    onChange={() => this.setState({role: roleElement.value})}>
+                                <option value="admin">Admin</option>
+                                <option value="adopter">Adopter</option>
+                            </select>
                         </div>
                     </div>
                     <div className="form-group row">

@@ -15,17 +15,30 @@ export class EventService {
         return this[_singleton]
     }
 
-    registerEvent = (userId, eventId) => {
+    registerEvent = (eventId, userId) => fetch(url + `/register/${eventId}/${userId}`, {
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+    }).then(response => response.json());
 
-    };
+    createEvent = event => fetch(url, {
+        body: JSON.stringify(event),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'POST'
+    }).then(response => response.json());
 
-    createEvent = (userId, event) => {
-
-    };
-
-    findEventById = eventId => {
-    };
+    findEventById = eventId => fetch(url + `/${eventId}`).then(response => response.json());
 
     findAllEvents = () => fetch(url).then(response => response.json())
 
+    updateEvent = (eventId, event) => fetch(url + `/${eventId}`, {
+        body: JSON.stringify(event),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        method: 'PUT'
+    }).then(response => response.json());
 }

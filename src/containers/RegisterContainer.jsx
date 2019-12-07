@@ -6,7 +6,8 @@ class RegisterContainer extends React.Component {
     state = {
         username: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        role: ''
     }
 
     constructor(props) {
@@ -23,7 +24,8 @@ class RegisterContainer extends React.Component {
 
         const newUser = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            role: this.state.role
         }
 
         this.userService.register(newUser)
@@ -35,6 +37,7 @@ class RegisterContainer extends React.Component {
     }
 
     render() {
+        let roleElement;
         return (
             <div className="container">
                 <h1>Sign Up</h1>
@@ -68,7 +71,7 @@ class RegisterContainer extends React.Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label className="col-sm-2 col-form-label" htmlFor="password">
+                        <label className="col-sm-2 col-form-label" htmlFor="verifyPassword">
                             Verify<br/> Password </label>
                         <div className="col-sm-10">
                             <input className="form-control"
@@ -77,6 +80,19 @@ class RegisterContainer extends React.Component {
                                    type="password"
                                    value={this.state.confirmPassword}
                                    onChange={this.confirmPasswordChanged}/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label className="col-sm-2 col-form-label" htmlFor="role">
+                            Role </label>
+                        <div className="col-sm-10">
+                            <select value="——"
+                                    className="form-control"
+                                    ref={node => roleElement = node}
+                                    onChange={() => this.setState({role: roleElement.value})}>
+                                <option value="admin">Admin</option>
+                                <option value="adopter">Adopter</option>
+                            </select>
                         </div>
                     </div>
                     <div className="form-group row">
