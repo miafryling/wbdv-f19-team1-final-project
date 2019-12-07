@@ -30,7 +30,8 @@ class ProfileContainer extends React.Component {
     };
 
     updateUser = () => {
-        this.userService.updateUser(this.props.user._id, this.state)
+        const userId = JSON.parse(sessionStorage.getItem('user'))._id;
+        this.userService.updateUser(userId, this.state)
             .then(newUser => {
                 sessionStorage.setItem('user', JSON.stringify(newUser));
                 this.props.changeUser(newUser);
