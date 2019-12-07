@@ -47,7 +47,8 @@ export default class EventCreate extends Component {
                         </div>
                     </div>
                     <div className="col-md-8 py-5 border">
-                        <h3 className="pb-4">Please fill with your details</h3>
+                        <h3 className="pb-4">Please fill with your details <a className="float-right" href='/events'>More
+                            Events!</a></h3>
                         <form>
                             <div className="form-row">
                                 <div className="form-group col-md-6">
