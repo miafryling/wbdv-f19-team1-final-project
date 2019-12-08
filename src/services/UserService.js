@@ -38,4 +38,16 @@ export class UserService {
     login = (username, password) => fetch(url + `/login/${username}/${password}`).then(res => res.json())
 
     searchForUsers = searchText => fetch(url + `/search/${searchText}`).then(res => res.json());
+
+    getBatch = ids => fetch(url + '/getBatch', {
+      method: 'POST',
+      body: JSON.stringify({ userIds: ids }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+
+    addFriend = (uid1, uid2) => fetch(url + `/${uid1}/friend/${uid2}`, {
+      method: 'PUT'
+    });
 }
