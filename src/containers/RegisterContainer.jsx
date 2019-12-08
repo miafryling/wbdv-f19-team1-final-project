@@ -86,10 +86,11 @@ class RegisterContainer extends React.Component {
                         <label className="col-sm-2 col-form-label" htmlFor="role">
                             Role </label>
                         <div className="col-sm-10">
-                            <select value="——"
+                            <select
                                     className="form-control"
                                     ref={node => roleElement = node}
                                     onChange={() => this.setState({role: roleElement.value})}>
+                                <option value="" selected disabled>Select Role</option>
                                 <option value="admin">Admin</option>
                                 <option value="user">User</option>
                             </select>
