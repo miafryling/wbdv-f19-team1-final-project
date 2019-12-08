@@ -1,6 +1,7 @@
 import React from 'react'
 import { UserService } from "../services/UserService";
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 class PublicProfile extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class PublicProfile extends React.Component {
     let current = JSON.parse(sessionStorage.getItem('user'));
     if (!current) {
       alert('Please log in first.');
-      this.history.push('/login');
+      this.props.history.push('/login');
     } else if (current._id === this.state.user._id) {
       alert('You can\'t add yourself as a friend.')
     } else {
@@ -89,4 +90,4 @@ class PublicProfile extends React.Component {
   }
 }
 
-export default PublicProfile;
+export default withRouter(PublicProfile);

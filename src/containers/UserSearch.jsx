@@ -7,7 +7,7 @@ export default class SearchContainer extends Component {
     super(props);
     this.userService = UserService.instance;
     this.state = {
-      searchText: '',
+      searchText: 'username',
       users: []
     }
 
