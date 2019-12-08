@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import {AnimalService} from '../services/AnimalService';
+import {UserService} from '../services/UserService';
 
 class MyAppChild extends React.Component {
     render() {
@@ -11,10 +13,12 @@ export class DetailContainer extends Component {
     constructor(props) {
         super(props);
         this.animalService = AnimalService.instance;
+        this.userService = UserService.instance;
         this.state = {
             loading: true,
             animalId: this.props.match.params.animalId,
-            details: {}
+            details: {},
+            likes: []
         }
     }
 
@@ -24,6 +28,12 @@ export class DetailContainer extends Component {
             loading: false,
             details: info
         }))
+        this.animalService.getLikes(this.state.animalId)
+          .then(users => {
+            console.log(users)
+            return this.userService.getBatch(users)
+          })
+          .then(likes => this.setState({ likes }))
     }
 
 
@@ -63,10 +73,8 @@ export class DetailContainer extends Component {
     }
 
     render() {
+        console.log(this.state)
         const {loading, animalID, details} = this.state
-        {
-            console.log(details)
-        }
         return (
             <div class="card mb-3">
                 <div class="row no-gutters">
@@ -105,6 +113,8 @@ export class DetailContainer extends Component {
                                     <p class="card-text"> {this.renderSimpleObject(details.attributes)} </p>
                                     <h6 class="card-text">Contact Info </h6>
                                     <p class="card-text"> {this.renderSimpleObject(details.contact)} </p>
+                                    <h4 class="card-text">Liked by:</h4>
+                                    { this.state.likes.map(x => <div className="row"><Link to={`/users/${x._id}`}>{x.username}</Link></div>) }
                                 </div>
                             }
                         </div>

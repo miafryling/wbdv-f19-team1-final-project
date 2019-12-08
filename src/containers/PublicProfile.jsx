@@ -54,6 +54,17 @@ class PublicProfile extends React.Component {
             }
           </div>
         </div>
+        <div className="row">
+          <div className="col-sm-6">
+            <h4>Liked Animals</h4>
+            {
+              this.state.user.animals.map(x => <div className="row"><Link to={`/animals/${x}`}>{x}</Link></div>)
+            }
+          </div>
+          <div className="col-sm-6">
+            <h4>Friends</h4>
+          </div>
+        </div>
       </div>
     )
   }
