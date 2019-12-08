@@ -46,4 +46,8 @@ export class UserService {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
+
+    addFriend = (uid1, uid2) => fetch(url + `/${uid1}/friend/${uid2}`, {
+      method: 'PUT'
+    });
 }

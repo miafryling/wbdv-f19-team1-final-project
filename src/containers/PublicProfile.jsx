@@ -13,12 +13,28 @@ class PublicProfile extends React.Component {
       .then(user => this.setState({ user }));
   }
 
+  addFriend = (e) => {
+    e.preventDefault();
+
+    let current = JSON.parse(sessionStorage.getItem('user'));
+    if (!current) {
+      alert('Please log in first.');
+      this.history.push('/login');
+    } else if (current._id === this.state.user._id) {
+      alert('You can\'t add yourself as a friend.')
+    } else {
+      this.userService.addFriend(current._id, this.state.user._id)
+        .then(res => res.status === 200 ? alert('Successfully added friend!') : alert('Failed to add as friend!'));
+    }
+  }
+
   render() {
     if (!this.state.user)
       return <div></div>;
     return (
       <div className="container">
         <h1>{this.state.user.username}</h1>
+        <button className="btn" onClick={this.addFriend}>Add Friend</button>
         <div className="row">
           <div className="col-sm-2">
             Name:
@@ -63,6 +79,9 @@ class PublicProfile extends React.Component {
           </div>
           <div className="col-sm-6">
             <h4>Friends</h4>
+            {
+              this.state.user.friends.map(x => <div className="row"><Link to={`/users/${x}`}>{x}</Link></div>)
+            }
           </div>
         </div>
       </div>
