@@ -50,6 +50,7 @@ export default class AnimalAdoption extends Component {
                         <Route path='/users/:userId' component={PublicProfile}/>
                         {/*should be /profile/:id*/}
                     </Switch>
+                    
                 </div>
             </BrowserRouter>
         )

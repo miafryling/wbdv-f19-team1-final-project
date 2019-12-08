@@ -2,6 +2,8 @@ import React from 'react'
 import {UserService} from "../services/UserService";
 import {Link, withRouter} from "react-router-dom";
 import {Collapse, Navbar, NavbarToggler} from 'reactstrap'
+import {Image}from 'react-bootstrap';
+import '../Home.css'
 
 class NavbarComponent extends React.Component {
     state = {
@@ -28,6 +30,7 @@ class NavbarComponent extends React.Component {
         return (
             <Navbar className='mb-3' color="dark" dark expand="md">
                 <Link to="/" className="navbar-brand">Adoptable</Link>
+                <img class="image" src="https://image.flaticon.com/icons/png/128/53/53113.png" />
                 <NavbarToggler onClick={this.openNavButton}/>
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <ul className="navbar-nav mr-auto">

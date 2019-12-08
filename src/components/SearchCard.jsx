@@ -1,8 +1,9 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {AnimalService} from "../services/AnimalService";
+import { withRouter } from 'react-router-dom';
 
-export default class SearchCard extends React.Component {
+class SearchCard extends React.Component {
     constructor(props) {
         super(props);
         this.animalService = AnimalService.instance;
@@ -23,7 +24,7 @@ export default class SearchCard extends React.Component {
                     {animal.photo &&
                     <img className="card-img-top overflow-auto" src={animal.photo} alt="Card image cap"/>}
                     {!animal.photo &&
-                    <img className="card-img-top overflow-auto" src="https://picsum.photos/300/200"
+                    <img className="card-img-top overflow-auto" src="https://www.publicdomainpictures.net/pictures/150000/nahled/pet-silhouette-icons.jpg"
                          alt="Card image cap"/>}
                     <div className="card-body">
                         <Link className="card-title" to={`/animals/${animal.id}`}>{animal.name}</Link>
@@ -45,3 +46,4 @@ export default class SearchCard extends React.Component {
     }
 }
 
+export default withRouter(SearchCard);
