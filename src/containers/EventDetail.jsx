@@ -27,7 +27,10 @@ export default class EventDetail extends Component {
         this.eventService.findEventById(this.state.eventId)
             .then(event => this.setState({
                 event: event,
-                userId: event.owner
+                userId: event.owner,
+                name: event.name,
+                location: event.location,
+                description: event.description
             }))
             .then(() => this.userService.findUserById(this.state.userId))
             .then(user => this.setState({ownerName: user.username}))
@@ -51,7 +54,10 @@ export default class EventDetail extends Component {
             name: this.state.name
         };
         this.eventService.updateEvent(this.state.eventId, event)
-            .then(() => alert("Successfully Update Your Event!"))
+            .then(() => {
+                alert("Successfully Update Your Event!")
+                this.props.history.push('/events')
+            })
             .catch(error => alert('Failed to Update Your Event because ' + error))
     }
 
@@ -71,27 +77,27 @@ export default class EventDetail extends Component {
                         <h3 className="my-3">Event Owner:</h3>
                         <p>{this.state.ownerName}</p>
                         <h3 className="my-3">Event Name:</h3>
-                        {currentUserId === this.state.userId && <p>{this.state.event.name}</p>}
-                        {!currentUserId === this.state.userId &&
+                        {!currentUserId === this.state.userId && <p>{this.state.name}</p>}
+                        {currentUserId === this.state.userId &&
                         <input onChange={this.nameChanged}
                                className="form-control"
-                               value={this.state.event.name}
+                               value={this.state.name}
                                placeholder="New Event Location"
                         />}
                         <h3 className="my-3">Event Location:</h3>
-                        {currentUserId === this.state.userId && <p>{this.state.event.location}</p>}
-                        {!currentUserId === this.state.userId &&
+                        {!currentUserId === this.state.userId && <p>{this.state.location}</p>}
+                        {currentUserId === this.state.userId &&
                         <input onChange={this.locationChanged}
                                className="form-control"
-                               value={this.state.event.location}
+                               value={this.state.location}
                                placeholder="New Event Location"
                         />}
                         <h3 className="my-3">Event Description:</h3>
-                        {currentUserId === this.state.userId && <p>{this.state.event.description}</p>}
-                        {!currentUserId === this.state.userId &&
+                        {!currentUserId === this.state.userId && <p>{this.state.description}</p>}
+                        {currentUserId === this.state.userId &&
                         <input onChange={this.descriptionChanged}
                                className="form-control"
-                               value={this.state.event.description}
+                               value={this.state.description}
                                placeholder="New Event Description"
                         />}
                     </div>
