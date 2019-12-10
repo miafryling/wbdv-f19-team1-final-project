@@ -55,17 +55,20 @@ class NavbarComponent extends React.Component {
                     <div className="form-inline my-lg-0">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <Link to="/profile" className="btn btn-outline-info mr-md-2 mb-2 mb-md-0">Profile</Link>
+                                <Link to="/profile" className="btn btn-outline-info mr-md-2 mb-2 mb-md-0">Update Profile</Link>
                             </li>
                             <li className="nav-item">
-                                <button onClick={this.logOut}
-                                        className="btn btn-outline-danger mr-md-2 mb-2 mb-md-0">Logout
-                                </button>
+                                <Link to={`/users/${user._id}`} className="btn btn-outline-info mr-md-2 mb-2 mb-md-0">Public Profile</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/events/create" className="btn btn-outline-primary mr-md-2 mb-2 mb-md-0">
                                     Create Events
                                 </Link>
+                            </li>
+                            <li className="nav-item">
+                                <button onClick={this.logOut}
+                                        className="btn btn-outline-danger mr-md-2 mb-2 mb-md-0">Logout
+                                </button>
                             </li>
                         </ul>
                     </div>

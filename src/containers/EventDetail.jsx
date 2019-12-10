@@ -27,7 +27,11 @@ export default class EventDetail extends Component {
         this.eventService.findEventById(this.state.eventId)
             .then(event => this.setState({
                 event: event,
-                userId: event.owner
+                userId: event.owner,
+                ownerName: event.ownerName,
+                description: event.description,
+                location: event.location,
+                name: event.name
             }))
             .then(() => this.userService.findUserById(this.state.userId))
             .then(user => this.setState({ownerName: user.username}))
@@ -60,7 +64,7 @@ export default class EventDetail extends Component {
         return (
             <div className="container">
                 <h1 className="my-4">Event:
-                    <small>{this.state.event.name}</small>
+                    <small>{" " + this.state.event.name}</small>
                 </h1>
                 <div className="row">
                     <div className="col-md-8">
@@ -71,27 +75,27 @@ export default class EventDetail extends Component {
                         <h3 className="my-3">Event Owner:</h3>
                         <p>{this.state.ownerName}</p>
                         <h3 className="my-3">Event Name:</h3>
-                        {currentUserId === this.state.userId && <p>{this.state.event.name}</p>}
-                        {!currentUserId === this.state.userId &&
+                        {currentUserId !== this.state.userId && <p>{this.state.event.name}</p>}
+                        {currentUserId === this.state.userId &&
                         <input onChange={this.nameChanged}
                                className="form-control"
-                               value={this.state.event.name}
+                               defaultValue={this.state.event.name}
                                placeholder="New Event Location"
                         />}
                         <h3 className="my-3">Event Location:</h3>
-                        {currentUserId === this.state.userId && <p>{this.state.event.location}</p>}
-                        {!currentUserId === this.state.userId &&
+                        {currentUserId !== this.state.userId && <p>{this.state.event.location}</p>}
+                        {currentUserId === this.state.userId &&
                         <input onChange={this.locationChanged}
                                className="form-control"
-                               value={this.state.event.location}
+                               defaultValue={this.state.event.location}
                                placeholder="New Event Location"
                         />}
                         <h3 className="my-3">Event Description:</h3>
-                        {currentUserId === this.state.userId && <p>{this.state.event.description}</p>}
-                        {!currentUserId === this.state.userId &&
+                        {currentUserId !== this.state.userId && <p>{this.state.event.description}</p>}
+                        {currentUserId === this.state.userId &&
                         <input onChange={this.descriptionChanged}
                                className="form-control"
-                               value={this.state.event.description}
+                               defaultValue={this.state.event.description}
                                placeholder="New Event Description"
                         />}
                     </div>
