@@ -28,16 +28,9 @@ export default class EventDetail extends Component {
             .then(event => this.setState({
                 event: event,
                 userId: event.owner,
-<<<<<<< HEAD
-                ownerName: event.ownerName,
-                description: event.description,
-                location: event.location,
-                name: event.name
-=======
                 name: event.name,
                 location: event.location,
                 description: event.description
->>>>>>> 9066b25884fc6938bf91f0ba7673ff17d862c26d
             }))
             .then(() => this.userService.findUserById(this.state.userId))
             .then(user => this.setState({ownerName: user.username}))
