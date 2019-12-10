@@ -26,10 +26,10 @@ export default class SearchContainer extends Component {
 
             this.setState({
                 types: types.map(x => {
-                  return {
-                    name: x.name,
-                    value: x._links.self.href.substring(10)
-                  }
+                    return {
+                        name: x.name,
+                        value: x._links.self.href.substring(10)
+                    }
                 }),
                 colors
             });
@@ -133,7 +133,7 @@ export default class SearchContainer extends Component {
                             <option value="adult">Adult</option>
                             <option value="senior">Senior</option>
                         </select>
-                        
+
                         <select class="form-control" id="animalCoat" value={this.state.selectedCoat}
                                 onChange={this.onCoatChange}>
                             <option value="" selected disabled>Animal Coat</option>
@@ -172,17 +172,3 @@ export default class SearchContainer extends Component {
         )
     }
 }
-
-// const mapStateToProps = state => ({
-//     animals: state.animals
-// })
-//
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         findAllAnimals() {
-//             dispatch(findAllAnimalsAction())
-//         }
-//     }
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer);

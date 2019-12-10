@@ -10,7 +10,6 @@ export default class EventDetail extends Component {
         this.state = {
             eventId: '',
             event: {},
-            // compare to the sessionStorage.getItem('user')._id -> check if you are the creator of this given event
             userId: '',
             ownerName: '',
             description: '',
