@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {EventService} from "../services/EventService";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 
-export default class extends Component {
+class EventCard extends Component {
     constructor(props) {
         super(props);
         this.eventService = EventService.instance;
@@ -50,3 +50,5 @@ export default class extends Component {
         )
     }
 }
+
+export default withRouter(EventCard);

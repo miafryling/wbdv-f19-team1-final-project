@@ -80,8 +80,9 @@ export class DetailContainer extends Component {
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         {/* TODO: FIx the loading placeholder */}
-                        {loading ? "" :
-                            <img
+                        {loading ? "":
+                            details.photos[0] &&
+                              <img
                                 style={
                                     {
                                         display: 'block',
@@ -94,7 +95,27 @@ export class DetailContainer extends Component {
                                 resizeMode="stretch"
                                 src={details.photos[0].full}
                                 alt={"Picture of " + details.name}
-                            />}
+                            />
+                        }
+                             {loading ? "":
+                                !details.photos[0] &&
+                              <img
+                                style={
+                                    {
+                                        display: 'block',
+                                        margin: 'auto',
+                                        alignSelf: 'center',
+                                        maxHeight: 200,
+                                        maxWidth: 500,
+                                    }
+                                }
+                                resizeMode="stretch"
+                                src="https://www.publicdomainpictures.net/pictures/150000/nahled/pet-silhouette-icons.jpg"
+                                alt={"Picture of " + details.name}
+                            />
+                        }
+                            
+                        }
 
 
                     </div>

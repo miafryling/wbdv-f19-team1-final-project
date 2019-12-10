@@ -29,7 +29,9 @@ export class AnimalService {
 
     findAnimalById = (animalId) => fetch(url + animalId).then(response => response.json());
 
-    likeAnimal = (userId, animalId) => fetch(`https://wbdv-f19-team1-backend.herokuapp.com/animals/${animalId}/${userId}`)
+    likeAnimal = (userId, animalId) => fetch(`https://wbdv-f19-team1-backend.herokuapp.com/animals/${animalId}/${userId}`, {
+      method: 'PUT'
+    })
 
     getLikes = animalId => fetch(`https://wbdv-f19-team1-backend.herokuapp.com/animals/${animalId}`)
       .then(res => res.json())

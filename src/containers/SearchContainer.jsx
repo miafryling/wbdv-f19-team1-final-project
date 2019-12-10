@@ -102,9 +102,10 @@ export default class SearchContainer extends Component {
                     <h1>Animal Adoption</h1>
                     <div class="form-group">
                         <label for="animalType">Type of Animal</label>
-                        <select class="form-control" id="animalType" value={this.state.selectedType}
+                        <select class="form-control" id="animalType"
+                                value={this.state.selectedType}
                                 onChange={this.onTypeChange}>
-                            <option value=""></option>
+                            <option value="" selected disabled>Animal Type</option>
                             {
                                 this.state.types.map(x => <option
                                     value={x.value}>{x.name}</option>)
@@ -112,7 +113,7 @@ export default class SearchContainer extends Component {
                         </select>
                         <select className="form-control" id="animalSize" value={this.state.selectedSize}
                                 onChange={this.onSizeChange}>
-                            <option value=""></option>
+                            <option value="" selected disabled>Animal Size</option>
                             <option value="small">Small</option>
                             <option value="medium">Medium</option>
                             <option value="large">Large</option>
@@ -120,31 +121,22 @@ export default class SearchContainer extends Component {
                         </select>
                         <select className="form-control" id="animalGender" value={this.state.selectedGender}
                                 onChange={this.onGenderChange}>
-                            <option value=""></option>
+                            <option value="" selected disabled>Animal Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
                         <select className="form-control" id="animalAge" value={this.state.selectedAge}
                                 onChange={this.onAgeChange}>
-                            <option value=""></option>
+                            <option value="" selected disabled>Animal Age</option>
                             <option value="baby">Baby</option>
                             <option value="young">Young</option>
                             <option value="adult">Adult</option>
                             <option value="senior">Senior</option>
                         </select>
-                        <select className="form-control" id="animalColor" value={this.state.selectedColor}
-                                onChange={this.onColorChange}>
-                            <option value=""></option>
-                            {
-                                this.state.colors[this.state.selectedType] ?
-                                    this.state.colors[this.state.selectedType].map(x => <option
-                                        value={x}>{x.charAt(0).toUpperCase() + x.substring(1)}</option>) :
-                                    <div></div>
-                            }
-                        </select>
+                        
                         <select class="form-control" id="animalCoat" value={this.state.selectedCoat}
                                 onChange={this.onCoatChange}>
-                            <option value=""></option>
+                            <option value="" selected disabled>Animal Coat</option>
                             <option value="short">Short</option>
                             <option value="medium">Medium</option>
                             <option value="long">Long</option>
@@ -154,7 +146,7 @@ export default class SearchContainer extends Component {
                         </select>
                         <select class="form-control" id="animalStatus" value={this.state.selectedStatus}
                                 onChange={this.onStatusChange}>
-                            <option value=""></option>
+                            <option value="" selected disabled>Animal Status</option>
                             <option value="adoptable">Adoptable</option>
                             <option value="adopted">Adopted</option>
                             <option value="found">Found</option>

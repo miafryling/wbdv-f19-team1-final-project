@@ -52,6 +52,7 @@ export default class AnimalAdoption extends Component {
                         <Route exact path='/privacy' component={PrivacyPolicyContainer}/>
                         {/*should be /profile/:id*/}
                     </Switch>
+                    
                 </div>
             </BrowserRouter>
         )
