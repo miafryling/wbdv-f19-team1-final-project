@@ -16,6 +16,7 @@ export default class EventDetail extends Component {
             description: '',
             location: '',
             name: '',
+            currentUserRole: ''
         }
     }
 
@@ -34,6 +35,8 @@ export default class EventDetail extends Component {
             }))
             .then(() => this.userService.findUserById(this.state.userId))
             .then(user => this.setState({ownerName: user.username}))
+            .then(() => this.userService.findUserById(JSON.parse(sessionStorage.getItem('user'))._id))
+            .then(currentUser => this.setState({currentUserRole: currentUser.role}))
     }
 
     nameChanged = event => this.setState({name: event.target.value})
@@ -61,6 +64,10 @@ export default class EventDetail extends Component {
             .catch(error => alert('Failed to Update Your Event because ' + error))
     }
 
+    canEdit = (currentUserId) => {
+        return currentUserId === this.state.userId || this.state.currentUserRole === "admin"
+    }
+
     render() {
         const currentUserId = JSON.parse(sessionStorage.getItem('user'))._id;
         return (
@@ -77,24 +84,24 @@ export default class EventDetail extends Component {
                         <h3 className="my-3">Event Owner:</h3>
                         <p>{this.state.ownerName}</p>
                         <h3 className="my-3">Event Name:</h3>
-                        {currentUserId !== this.state.userId && <p>{this.state.event.name}</p>}
-                        {currentUserId === this.state.userId &&
+                        {!this.canEdit(currentUserId) && <p>{this.state.event.name}</p>}
+                        {this.canEdit(currentUserId) &&
                         <input onChange={this.nameChanged}
                                className="form-control"
                                defaultValue={this.state.event.name}
                                placeholder="New Event Location"
                         />}
                         <h3 className="my-3">Event Location:</h3>
-                        {currentUserId !== this.state.userId && <p>{this.state.event.location}</p>}
-                        {currentUserId === this.state.userId &&
+                        {!this.canEdit(currentUserId) && <p>{this.state.event.location}</p>}
+                        {this.canEdit(currentUserId) &&
                         <input onChange={this.locationChanged}
                                className="form-control"
                                defaultValue={this.state.event.location}
                                placeholder="New Event Location"
                         />}
                         <h3 className="my-3">Event Description:</h3>
-                        {currentUserId !== this.state.userId && <p>{this.state.event.description}</p>}
-                        {currentUserId === this.state.userId &&
+                        {!this.canEdit(currentUserId) && <p>{this.state.event.description}</p>}
+                        {this.canEdit(currentUserId) &&
                         <input onChange={this.descriptionChanged}
                                className="form-control"
                                defaultValue={this.state.event.description}
@@ -107,7 +114,7 @@ export default class EventDetail extends Component {
                         onClick={this.registerEvent}>
                     Register Now!
                 </button>
-                {currentUserId === this.state.userId &&
+                {this.canEdit(currentUserId) &&
                 <button className="btn btn-primary"
                         onClick={this.updateEvent}>
                     Update
